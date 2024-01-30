@@ -1,29 +1,38 @@
-import React from 'react'
+import React from "react";
 
-const Modal = ({isModalOpen, handleUpdate, setModalOpen, updatedTitle, setUpdatedTitle, updatedContent, setUpdatedContent}) => {
+const Modal = ({
+  isModalOpen,
+  handleUpdate,
+  setModalOpen,
+  updatedTitle,
+  setUpdatedTitle,
+  updatedContent,
+  setUpdatedContent,
+}) => {
   return (
     <div
       className={`fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none ${
-        isModalOpen ? 'visible' : 'invisible'
+        isModalOpen ? "visible" : "invisible"
       }`}
     >
       <div className="relative w-1/2  mx-auto my-6">
         <div className="relative flex flex-col w-full bg-white border-2 border-gray-300 rounded-md shadow-md">
           <div className="flex items-start justify-between p-5 border-b border-gray-300 border-solid rounded-t">
-            
-
             <div className="flex w-full mt-5 items-center justify-between">
-            <h3 className="text-2xl font-semibold">Update Blog</h3>
-            <button onClick={()=>setModalOpen(false)} className="text-sm font-bold border-2  rounded-full border-gray-700 text-center px-3 py-[2px] ">
+              <h3 className="text-2xl font-semibold">Update Blog</h3>
+              <button
+                onClick={() => setModalOpen(false)}
+                className="text-sm font-bold border-2  rounded-full border-gray-700 text-center px-3 py-[2px] "
+              >
                 X
               </button>
             </div>
-            
-            
-
           </div>
           <div className="relative p-6 flex-auto">
-            <label htmlFor="updatedTitle" className="block text-gray-700 text-sm font-bold mb-2">
+            <label
+              htmlFor="updatedTitle"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
               Title
             </label>
             <input
@@ -36,7 +45,10 @@ const Modal = ({isModalOpen, handleUpdate, setModalOpen, updatedTitle, setUpdate
               required
             />
 
-            <label htmlFor="updatedContent" className="block text-gray-700 text-sm font-bold mt-4 mb-2">
+            <label
+              htmlFor="updatedContent"
+              className="block text-gray-700 text-sm font-bold mt-4 mb-2"
+            >
               Content
             </label>
             <textarea
@@ -60,7 +72,7 @@ const Modal = ({isModalOpen, handleUpdate, setModalOpen, updatedTitle, setUpdate
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;

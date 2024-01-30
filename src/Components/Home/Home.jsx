@@ -10,7 +10,7 @@ const Home = () => {
   } = useQuery({
     queryKey: ["blogs"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/blogs`);
+      const res = await fetch(`https://blog-server-lac-zeta.vercel.app/blogs`);
       const data = await res.json();
       return data;
     },
@@ -24,10 +24,8 @@ const Home = () => {
         Read blogs and learn more
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-        {blogs.map((b) => (
-          <SingleBlog  key={b._id}
-           blog={b}
-           ></SingleBlog>
+        {blogs?.map((b) => (
+          <SingleBlog key={b._id} blog={b}></SingleBlog>
         ))}
       </div>
     </div>

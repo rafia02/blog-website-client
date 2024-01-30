@@ -4,13 +4,11 @@ import { Link } from "react-router-dom";
 const SingleBlog = ({ blog }) => {
   return (
     <div className="max-w-md mx-auto border mt-4 p-6 bg-white rounded-md shadow-md">
-       {blog?.title?.length > 30 ? (
-            <h1 className="text-xl font-bold">
-              {blog?.title?.slice(0, 30)}...
-            </h1>
-          ) : (
-            <p className="text-xl font-bold">{blog?.title}</p>
-          )}
+      {blog?.title?.length > 30 ? (
+        <h1 className="text-xl font-bold">{blog?.title?.slice(0, 30)}...</h1>
+      ) : (
+        <p className="text-xl font-bold">{blog?.title}</p>
+      )}
 
       {blog.content.length > 150 ? (
         <p className="text-gray-700 mb-4 text-justify normal-case my-5">
@@ -34,7 +32,3 @@ const SingleBlog = ({ blog }) => {
 };
 
 export default SingleBlog;
-
-
- 
-
