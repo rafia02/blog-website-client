@@ -5,9 +5,14 @@ import CardBlog from "./CardBlog";
 import Modal from "./Modal";
 import toast from "react-hot-toast";
 
-const AllBlogs = () => {
+const AllBlogs = ({favorites, setFavorites, toggleFavorite}) => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [updatedTitle, setUpdatedTitle] = useState("");
+  const [updatedContent, setUpdatedContent] = useState("");
   const [data, setData] = useState({});
+
+
+
   const {
     data: blogs = [],
     refetch,
@@ -21,66 +26,51 @@ const AllBlogs = () => {
     },
   });
 
-  const [updatedTitle, setUpdatedTitle] = useState("");
-  const [updatedContent, setUpdatedContent] = useState("");
+
 
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    console.log(updatedTitle)
-    console.log(updatedContent)
 
-
-
-    const UpdateblogData = {
-      title: updatedTitle,
-      content: updatedContent
-
-  }
-
-
-  if(updatedContent && updatedTitle){
-    fetch(`http://localhost:5000/blogUpdate/${data?._id}`, {
-      method: "PATCH",
-      headers: {
-          "content-type": "application/json"
-      },
-      body: JSON.stringify(updatedContent)
-  })
-      .then(res => res.json())
-      .then(data => {
-          console.log(data)
-          toast.success("successfully complited")
-          refetch()
-          setModalOpen(false)
+    if (updatedContent && updatedTitle) {
+      console.log("hobe");
+      console.log(data._id);
+      fetch(`http://localhost:5000/blogUpdate/${data?._id}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ title: updatedTitle, content: updatedContent }),
       })
-      .catch(e => console.error(e))
-
-
-
-  }
-  
-
-
-
-
-
-
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          toast.success("successfully complited");
+          refetch();
+          setModalOpen(false);
+        })
+        .catch((e) => console.error(e));
+    }
   };
 
+  
+
   return (
-    <div className="px-5">
+    <div className="px-5 mb-20">
       <h1 className="text-3xl text-center mt-5 mb-10 font-semibold uppercase">
         All Blog Lists
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
         {blogs.map((b) => (
           <CardBlog
-            isModalOpen={isModalOpen}
             setModalOpen={setModalOpen}
             key={b._id}
             blog={b}
             setData={setData}
+            refetch={refetch}
+            favorites={favorites} 
+            setFavorites ={setFavorites}
+            toggleFavorite={toggleFavorite}
           ></CardBlog>
         ))}
       </div>
